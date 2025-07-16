@@ -1,0 +1,80 @@
+1. users
+Handles login + personal info. Role defines access.
+
+user_id (PK)
+
+full_name
+
+email
+
+password
+
+contact_number
+
+role ('admin', 'resident', 'both')
+
+unit_id (FK to units, nullable if admin without unit)
+
+✅ If a person is both HOA and unit owner, set role = 'both'
+
+2. units
+Details of each condo unit.
+
+unit_id (PK)
+
+unit_number (e.g., 1A)
+
+floor_number
+
+status (vacant/occupied)
+
+3. billing
+Monthly or service-based dues per unit.
+
+bill_id (PK)
+
+unit_id (FK)
+
+billing_period (e.g., '2025-07')
+
+amount_due
+
+description
+
+status ('unpaid', 'paid', 'overdue')
+
+4. payments
+Resident payment for a bill.
+
+payment_id (PK)
+
+bill_id (FK)
+
+user_id (FK to users)
+
+amount_paid
+
+payment_date
+
+payment_method
+
+5. maintenance_requests
+Resident-submitted requests; resolved by admin.
+
+request_id (PK)
+
+user_id (FK to users)
+
+unit_id (FK)
+
+request_type (plumbing, electrical, etc.)
+
+description
+
+status (pending, in-progress, resolved)
+
+request_date
+
+resolved_by (FK to users, optional)
+
+resolution_date
